@@ -1,0 +1,14 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: wordpress-dev
+  namespace: flux-system
+spec:
+  interval: 30s
+  ref:
+    branch: development
+  secretRef:
+    name: wordpress-auth
+  url: https://github.com/marcoippel/k8s-wordpress
+
