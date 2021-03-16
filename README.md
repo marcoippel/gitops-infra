@@ -1,5 +1,5 @@
-export GITHUB_TOKEN={your token}
-export GITHUB_USER={your username}
+export GITHUB_TOKEN= \
+export GITHUB_USER=
 
 flux bootstrap github \
   --owner=$GITHUB_USER \

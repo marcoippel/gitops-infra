@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m0s
-  path: ./deploy/static/provider/cloud
+  path: ./deploy/static/provider/baremetal #cloud
   prune: true
   sourceRef:
     kind: GitRepository
