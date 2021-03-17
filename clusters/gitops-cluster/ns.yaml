@@ -11,7 +11,7 @@ metadata:
     manager: kubectl
     operation: Update
     time: "2021-03-17T17:53:22Z"
-  name: test
+  name: tester
   resourceVersion: "34140"
   uid: 42624ca5-060f-4b8d-84bb-90036e789d0c
 spec:
