@@ -7,6 +7,6 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: main
-  url: https://github.com/fluxcd/flux2
+    branch: master
+  url: https://github.com/marcoippel/k8s-monitoring
 
