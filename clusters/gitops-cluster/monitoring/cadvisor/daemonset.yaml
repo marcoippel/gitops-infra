@@ -1,5 +1,5 @@
 apiVersion: apps/v1 # for Kubernetes versions before 1.9.0 use apps/v1beta2
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: cadvisor
   namespace: cadvisor
