@@ -1,23 +1,24 @@
-apiVersion: apps/v1 # for Kubernetes versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: cadvisor
   name: cadvisor
-  namespace: cadvisor
-  annotations:
-      seccomp.security.alpha.kubernetes.io/pod: 'docker/default'
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      name: cadvisor
+      app: cadvisor
+  strategy: {}
   template:
     metadata:
       labels:
-        name: cadvisor
+        app: cadvisor
     spec:
       serviceAccountName: cadvisor
       containers:
-      - name: cadvisor
-        image: k8s.gcr.io/cadvisor:v0.30.2
+      - image: k8s.gcr.io/cadvisor:v0.30.2
+        name: cadvisor
         resources:
           requests:
             memory: 200Mi
@@ -63,3 +64,4 @@ spec:
       - name: disk
         hostPath:
           path: /dev/disk
+status: {}
