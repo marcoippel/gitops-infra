@@ -6,7 +6,7 @@ commonLabels:
 resources:
 - clusterrole.yaml
 - clusterrolebinding.yaml
-- daemonset.yaml
+- deploy_cadvisor.yaml
 - namespace.yaml
 - podsecuritypolicy.yaml
 - serviceaccount.yaml
