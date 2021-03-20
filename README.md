@@ -45,3 +45,5 @@ flux create kustomization wordpress-prod \
   --interval=5m \
   --export > ./clusters/gitops-cluster/ingress/ingress-kustomization.yaml
 
+kubectl -n flux-system create secret generic slack-url \
+--from-literal=address=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
