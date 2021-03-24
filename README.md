@@ -47,3 +47,22 @@ flux create kustomization wordpress-prod \
 
 kubectl -n flux-system create secret generic slack-url \
 --from-literal=address=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
+
+flux create source git my-secrets \
+--url=https://github.com/marcoippel/gitops-secrets \
+--branch=master \
+--interval=30s \
+--secret-ref=wordpress-auth \
+--export > ./clusters/gitops-cluster/secrets/secret-source.yaml
+
+flux create kustomization my-secrets \
+--source=my-secrets \
+--path=. \
+--prune=true \
+--interval=10m \
+--decryption-provider=sops \
+--decryption-secret=sops-gpg \
+--export > ./clusters/gitops-cluster/secrets/secret-kustomization.yaml
+
+## SSH Issues
+ssh-add ~/.ssh/id_rsa
