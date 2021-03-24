@@ -1,5 +1,5 @@
-export GITHUB_TOKEN=b5314f57cec18833999b07db0e3df86db8b4cbca \
-export GITHUB_USER=marcoippel
+export GITHUB_TOKEN= \
+export GITHUB_USER=
 
 flux bootstrap github \
   --owner=$GITHUB_USER \
