@@ -63,6 +63,3 @@ flux create kustomization my-secrets \
 --decryption-provider=sops \
 --decryption-secret=sops-gpg \
 --export > ./clusters/gitops-cluster/secrets/secret-kustomization.yaml
-
-## SSH Issues
-ssh-add ~/.ssh/id_rsa
