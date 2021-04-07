@@ -1,3 +1,5 @@
+kubectl label nodes kind-control-plane ingress-ready=true
+
 export GITHUB_TOKEN= \
 export GITHUB_USER=
 
