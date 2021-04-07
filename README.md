@@ -1,64 +1,53 @@
-kubectl label nodes kind-control-plane ingress-ready=true
+### Install kind
+https://kind.sigs.k8s.io/
 
+### Create KIND Cluster
+```bash
+cat <<EOF | kind create cluster --config=-
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+EOF
+```
+### Create SOPS Secret in AKS
+``` bash
+kubectl apply -f sops-secret.yaml
+```
+
+### Add github credentials as env vars
+``` bash
 export GITHUB_TOKEN= \
 export GITHUB_USER=
+```
 
+### Init flux cluster
+``` bash
 flux bootstrap github \
   --owner=$GITHUB_USER \
   --repository=gitops-infra \
   --branch=main \
   --path=./clusters/gitops-cluster \
   --personal
-
-
-flux create source git wordpress-prod \
-    --url=https://github.com/marcoippel/k8s-wordpress \
-    --branch=master \
-    --username=$GITHUB_USER \
-    --password=$GITHUB_TOKEN \
-    --interval=30s \
-    --secret-ref=wordpress-auth \
-    --export > ./wordpress-source.yaml
-
-flux create kustomization wordpress-prod \
-  --source=wordpress-prod \
-  --path="./kustomize/pverlays/prod" \
-  --prune=true \
-  --validation=client \
-  --interval=5m \
-  --export > ./wordpress-prod-kustomization.yaml
-
+```
+### Create the secret for the git pull commands
+``` bash
 flux create secret git wordpress-auth \
     --url=https://github.com/marcoippel/k8s-wordpress \
     --username=$GITHUB_USER \
     --password=$GITHUB_TOKEN
+```
 
-flux create source git ingress \
-    --url=https://github.com/kubernetes/ingress-nginx \
-    --branch=master \
-    --interval=30s \
-    --export > ./clusters/gitops-cluster/ingress/ingress-source.yaml
-
-flux create kustomization wordpress-prod \
-  --source=ingress \
-  --path="./deploy/static/provider/cloud" \
-  --prune=true \
-  --validation=client \
-  --interval=5m \
-  --export > ./clusters/gitops-cluster/ingress/ingress-kustomization.yaml
-
-flux create source git my-secrets \
---url=https://github.com/marcoippel/gitops-secrets \
---branch=master \
---interval=30s \
---secret-ref=wordpress-auth \
---export > ./clusters/gitops-cluster/secrets/secret-source.yaml
-
-flux create kustomization my-secrets \
---source=my-secrets \
---path=. \
---prune=true \
---interval=10m \
---decryption-provider=sops \
---decryption-secret=sops-gpg \
---export > ./clusters/gitops-cluster/secrets/secret-kustomization.yaml
