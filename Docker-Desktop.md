@@ -11,7 +11,7 @@ set GITHUB_USER=
 
 ### Add a label to the node
 ``` bash
-kubectl node
+kubectl label node docker-desktop ingress-ready=true
 ```
 
 ### Create the secret for the git pull commands
