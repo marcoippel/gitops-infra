@@ -8,6 +8,7 @@ spec:
   interval: 30s
   ref:
     branch: master
+    tag: prod
   secretRef:
     name: wordpress-auth
   url: https://github.com/marcoippel/k8s-wordpress
