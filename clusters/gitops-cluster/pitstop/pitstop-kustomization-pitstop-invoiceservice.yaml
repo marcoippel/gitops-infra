@@ -5,10 +5,6 @@ metadata:
   name: invoiceservice
   namespace: flux-system
 spec:
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
   interval: 5m0s
   path: ./invoiceservice/base/
   prune: true

@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: notificationservice
+  name: timeservice
   namespace: flux-system
 spec:
   interval: 5m0s
-  path: ./notificationservice/base/
+  path: ./timeservice/base/
   prune: true
   sourceRef:
     kind: GitRepository
