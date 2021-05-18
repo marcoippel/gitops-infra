@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m0s
-  path: ./ingress-nginx/deploy/static/provider/cloud #kind #cloud
+  path: ./deploy/static/provider/cloud #kind #cloud
   prune: true
   sourceRef:
     kind: GitRepository
