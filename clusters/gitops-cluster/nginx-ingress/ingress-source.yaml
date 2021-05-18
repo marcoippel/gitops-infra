@@ -8,5 +8,5 @@ spec:
   interval: 30s
   ref:
     branch: feature/validation
-  url: https://github.com/kubernetes/ingress-nginx
+  url: https://github.com/marcoippel/ingress-nginx
 
