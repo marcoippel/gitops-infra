@@ -45,9 +45,6 @@ flux bootstrap github \
 ```
 ### Create the secret for the git pull commands
 ``` bash
-flux create secret git wordpress-auth \
-    --url=https://github.com/marcoippel/k8s-wordpress \
-    --username=$GITHUB_USER \
-    --password=$GITHUB_TOKEN
+kubectl apply -f github-pat-secret.yaml
 ```
 

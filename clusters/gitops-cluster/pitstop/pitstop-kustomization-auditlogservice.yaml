@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: auditlogservice
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  path: ./auditlogservice/base/
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: pitstop-infra
+  validation: client
+

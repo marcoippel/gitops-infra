@@ -10,6 +10,6 @@ spec:
     branch: development
     tag: dev
   secretRef:
-    name: wordpress-auth
+    name: github-pat
   url: https://github.com/marcoippel/k8s-wordpress
 
