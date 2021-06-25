@@ -23,10 +23,7 @@ nodes:
     protocol: TCP
 EOF
 ```
-### Create SOPS Secret in AKS
-``` bash
-kubectl apply -f sops-secret.yaml
-```
+
 
 ### Add github credentials as env vars
 ``` bash
@@ -43,6 +40,12 @@ flux bootstrap github \
   --path=./clusters/gitops-cluster \
   --personal
 ```
+
+### Create SOPS Secret in AKS
+``` bash
+kubectl apply -f sops-secret.yaml
+```
+
 ### Create the secret for the git pull commands
 ``` bash
 kubectl apply -f github-pat-secret.yaml
