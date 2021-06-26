@@ -51,3 +51,7 @@ kubectl apply -f sops-secret.yaml
 kubectl apply -f github-pat-secret.yaml
 ```
 
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+/api/v1/nodes/kind-control-plane/proxy/metrics/cadvisor
+/api/v1/nodes/kind-control-plane/proxy/metrics
