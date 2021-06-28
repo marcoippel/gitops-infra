@@ -7,6 +7,6 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: feature/validation
+    branch: master
   url: https://github.com/marcoippel/ingress-nginx
 
