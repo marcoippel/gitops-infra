@@ -11,4 +11,6 @@ spec:
         kind: HelmRepository
         name: grafana
       version: '6.13.6'
+      values:
+        dashboardsConfigMaps: 'grafana-dashboards'
   interval: 10m0s  
