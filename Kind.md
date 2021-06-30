@@ -68,3 +68,6 @@ flux create hr grafana \
     --chart-version=">4.0.0" \
     --values ./values.yaml \
     --export > grafana-kustomization.yaml
+
+kubectl get secret --namespace <YOUR-NAMESPACE> loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl port-forward --namespace <YOUR-NAMESPACE> service/loki-grafana 3000:80
