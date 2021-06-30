@@ -13,3 +13,5 @@ spec:
         name: grafana
       version: '2.4.1'
   interval: 10m0s
+  values:
+    grafana.enabled: true
