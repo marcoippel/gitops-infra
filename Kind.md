@@ -66,5 +66,5 @@ flux create hr grafana \
     --source=HelmRepository/grafana \
     --chart=loki-stack \
     --chart-version=">4.0.0" \
-    <!-- --values rafana.enabled=true,prometheus.enabled=true,prometheus.alertmanager.persistentVolume.enabled=false,prometheus.server.persistentVolume.enabled=false \ -->
+    --values ./values.yaml \
     --export > grafana-kustomization.yaml

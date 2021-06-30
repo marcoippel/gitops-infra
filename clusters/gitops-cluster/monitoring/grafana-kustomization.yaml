@@ -12,10 +12,10 @@ spec:
         kind: HelmRepository
         name: grafana
       version: '>4.0.0'
-      values:
-        rafana.enabled: true
-        prometheus.enabled: true
-        prometheus.alertmanager.persistentVolume.enabled: false
-        prometheus.server.persistentVolume.enabled: false
   interval: 10m0s
+  values:
+    grafana.enabled: true
+    prometheus.alertmanager.persistentVolume.enabled: false
+    prometheus.enabled: true
+    prometheus.server.persistentVolume.enabled: false
 
