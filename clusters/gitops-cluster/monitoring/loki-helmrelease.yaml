@@ -6,13 +6,10 @@ metadata:
 spec:
   chart:
     spec:
-      chart: loki-stack
+      chart: loki
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: '2.4.1'
-  values:
-    grafana.enabled: 'true'
-    prometheus.enabled: 'true'
+      version: '2.5.2'
   interval: 10m0s
   
