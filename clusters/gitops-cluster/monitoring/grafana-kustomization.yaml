@@ -1,0 +1,21 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: loki-stack
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+      version: '>4.0.0'
+      values:
+        rafana.enabled: true
+        prometheus.enabled: true
+        prometheus.alertmanager.persistentVolume.enabled: false
+        prometheus.server.persistentVolume.enabled: false
+  interval: 10m0s
+

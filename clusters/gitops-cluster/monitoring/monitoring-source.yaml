@@ -1,14 +1,14 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: monitoring
-  namespace: flux-system
-spec:
-  interval: 30s
-  ref:
-    branch: master
-  secretRef:
-    name: github-pat
-  url: https://github.com/marcoippel/k8s-monitoring
+# ---
+# apiVersion: source.toolkit.fluxcd.io/v1beta1
+# kind: GitRepository
+# metadata:
+#   name: monitoring
+#   namespace: flux-system
+# spec:
+#   interval: 30s
+#   ref:
+#     branch: master
+#   secretRef:
+#     name: github-pat
+#   url: https://github.com/marcoippel/k8s-monitoring
 
