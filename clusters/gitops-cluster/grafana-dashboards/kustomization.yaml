@@ -4,7 +4,7 @@ namespace: loki-stack
 configMapGenerator:
   - name: grafana-dashboards
     files:
-      - dashboards/control-plane.json
-      - dashboards/cluster.json
-      - dashboards/custom-dashboard.json
+      - control-plane.json
+      - cluster.json
+      - custom-dashboard.json
 
