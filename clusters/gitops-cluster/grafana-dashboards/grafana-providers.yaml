@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: grafana-providers
 data:
-  dashboardproviders.yaml:
+  providers.yaml: |+
     apiVersion: 1
     providers:
     - name: 'default'
