@@ -16,4 +16,4 @@ spec:
     dashboardsConfigMaps:
       default: grafana-dashboards
     dashboardProviders:
-      default: grafana-providers
+    - default
