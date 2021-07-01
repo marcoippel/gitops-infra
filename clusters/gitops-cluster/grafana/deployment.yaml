@@ -29,12 +29,6 @@ spec:
               value: /etc/grafana/provisioning/
             - name: GF_AUTH_BASIC_ENABLED
               value: "true"
-            # - name: GF_AUTH_ANONYMOUS_ENABLED
-            #   value: "true"
-            # - name: GF_AUTH_ANONYMOUS_ORG_ROLE
-            #   value: Admin
-            # - name: GF_USERS_DEFAULT_THEME
-            #   value: "light"
             - name: GF_SECURITY_ADMIN_USER
               value: marco
               # valueFrom:
