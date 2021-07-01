@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: grafana-providers
 data:
-  dashboardproviders.yaml: |+
+  dashboardproviders.yaml:
     apiVersion: 1
     providers:
     - name: 'default'
@@ -13,4 +13,4 @@ data:
       disableDeletion: false
       editable: true
       options:
-        path: /etc/grafana/dashboards
+        path: /var/lib/grafana/dashboards/default
