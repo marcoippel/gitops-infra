@@ -59,7 +59,14 @@ http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-da
  flux create source helm grafana \
     --url=https://grafana.github.io/helm-charts \
     --interval=10m \
+    --namespace=loki-stack \
     --export > grafana-source.yaml
+
+ flux create source helm prometheus \
+    --url=https://prometheus-community.github.io/helm-charts \
+    --interval=10m \
+    --namespace=loki-stack \
+    --export > prometheus-source.yaml
 
 flux create hr grafana \
     --interval=10m \
