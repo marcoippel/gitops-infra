@@ -12,4 +12,3 @@ spec:
         name: prometheus
       version: '14.3.0'
   interval: 10m0s
-  
