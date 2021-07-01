@@ -12,7 +12,7 @@ data:
     - name: prometheus
       type: prometheus
       access: proxy
-      url: http://prometheus-server:9090
+      url: http://prometheus-server
       isDefault: true
       editable: true
       version: 1
