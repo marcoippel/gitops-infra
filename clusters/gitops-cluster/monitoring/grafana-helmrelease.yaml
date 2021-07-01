@@ -14,4 +14,6 @@ spec:
   interval: 10m0s
   values:
     dashboardsConfigMaps:
-      import: grafana-dashboards
+      default: grafana-dashboards
+    dashboardProviders:
+      default: grafana-providers

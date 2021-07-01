@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: loki-stack
 resources:
 - configmap.yaml
+- grafana-providers.yaml
