@@ -35,6 +35,12 @@ spec:
             #   value: Admin
             # - name: GF_USERS_DEFAULT_THEME
             #   value: "light"
+            - name: GF_SECURITY_ADMIN_USER
+              value: marco
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: {{ .Values.admin.existingSecret | default (include "grafana.fullname" .) }}
+              #     key: {{ .Values.admin.userKey | default "admin-user" }}
             - name: GF_SECURITY_ADMIN_PASSWORD
               value: welkom01!
               # valueFrom:
