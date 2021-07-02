@@ -1,14 +1,14 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: pitstop-infra
-  namespace: flux-system
-spec:
-  interval: 30s
-  ref:
-    branch: master
-  secretRef:
-    name: github-pat
-  url: https://github.com/marcoippel/pitstop-infra
+# ---
+# apiVersion: source.toolkit.fluxcd.io/v1beta1
+# kind: GitRepository
+# metadata:
+#   name: pitstop-infra
+#   namespace: flux-system
+# spec:
+#   interval: 30s
+#   ref:
+#     branch: master
+#   secretRef:
+#     name: github-pat
+#   url: https://github.com/marcoippel/pitstop-infra
 
