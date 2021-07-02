@@ -1,15 +1,15 @@
-# apiVersion: kustomize.config.k8s.io/v1beta1
-# kind: Kustomization
-# namespace: monitoring
-# resources:
-#   - service.yaml
-#   - deployment.yaml
-#   - providers.yaml
-#   - datasources.yaml
-#   - ingress.yaml
-# configMapGenerator:
-#   - name: grafana-dashboards
-#     files:
-#       - dashboards/control-plane.json
-#       - dashboards/cluster.json
-#       - dashboards/custom-dashboard.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+resources:
+  - service.yaml
+  - deployment.yaml
+  - providers.yaml
+  - datasources.yaml
+  - ingress.yaml
+configMapGenerator:
+  - name: grafana-dashboards
+    files:
+      - dashboards/control-plane.json
+      - dashboards/cluster.json
+      - dashboards/custom-dashboard.json
