@@ -19,7 +19,7 @@ spec:
       #     path: HOST_PATH
       - name: promtail-config
         configMap:
-          name: promtail-configmap
+          name: promtail-config
       containers:
       - name: promtail-container
         image: grafana/promtail
