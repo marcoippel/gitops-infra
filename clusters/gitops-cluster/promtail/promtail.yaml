@@ -6,8 +6,8 @@ client:
   url: http://loki/api/v1/push
 
 
-positions:
-  filename: /run/promtail/positions.yaml
+# positions:
+#   filename: /run/promtail/positions.yaml
 
 scrape_configs:
   # See also https://github.com/grafana/loki/blob/master/production/ksonnet/promtail/scrape_config.libsonnet for reference
