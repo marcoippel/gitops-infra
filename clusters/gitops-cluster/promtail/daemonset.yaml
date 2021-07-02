@@ -73,8 +73,8 @@ spec:
           operator: Exists
       volumes:
         - name: config
-          secret:
-            secretName: promtail
+          configMap:
+            name: promtail-config
         - name: run
           hostPath:
             path: /run/promtail
