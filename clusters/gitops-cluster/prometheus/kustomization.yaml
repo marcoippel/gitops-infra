@@ -4,7 +4,6 @@ resources:
   - svc_prometheus.yaml
   - svc_cadvisor.yaml
   - deployment.yaml
-  - ns.yaml
   - ingress.yaml
   - rbac.yaml
 configMapGenerator:
