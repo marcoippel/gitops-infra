@@ -81,3 +81,7 @@ kubectl get secret --namespace loki-stack loki-grafana -o jsonpath="{.data.admin
 kubectl port-forward --namespace loki-stack service/grafana 3000:80
 kubectl port-forward --namespace loki-stack service/prometheus-server 3001:80
 kubectl port-forward --namespace loki-stack service/prometheus-alertmanager 3002:80
+
+kubectl port-forward --namespace monitoring service/loki-loki 3100:3100
+
+kubectl port-forward --namespace monitoring daemonSet/promtail-daemonset 3101:3101
