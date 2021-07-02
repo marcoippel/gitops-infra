@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: loki-loki
+  namespace: default
+  labels:
+    app: loki
+    chart: loki-2.5.2
+    release: loki
+    heritage: Helm
+  annotations:
+    {}
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+      release: loki
+  serviceName: loki-loki-headless
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: loki
+        name: loki
+        release: loki
+      annotations:
+        checksum/config: fabb3a0892c9be6bf76a7c905a52dd8b1960f22ff5279ed282cd20c61d7831c8
+        prometheus.io/port: http-metrics
+        prometheus.io/scrape: "true"
+    spec:
+      serviceAccountName: loki-loki
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+      initContainers:
+        []
+      containers:
+        - name: loki
+          image: "grafana/loki:2.2.1"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-config.file=/etc/loki/loki.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/loki
+            - name: storage
+              mountPath: "/data"
+          ports:
+            - name: http-metrics
+              containerPort: 3100
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          resources:
+            {}
+          securityContext:
+            readOnlyRootFilesystem: true
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 4800
+      volumes:
+        - name: config
+          secret:
+            secretName: loki-loki
+        - name: storage
+          emptyDir: {}
