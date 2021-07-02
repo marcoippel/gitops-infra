@@ -11,12 +11,12 @@ spec:
       labels:
         name: promtail
     spec:
-      serviceAccount: SERVICE_ACCOUNT
-      serviceAccountName: SERVICE_ACCOUNT
+      serviceAccount: promtail-serviceaccount
+      serviceAccountName: promtail-serviceaccount
       volumes:
-      - name: logs
-        hostPath:
-          path: HOST_PATH
+      # - name: logs
+      #   hostPath:
+      #     path: HOST_PATH
       - name: promtail-config
         configMap:
           name: promtail-configmap
@@ -26,7 +26,7 @@ spec:
         args:
         - -config.file=/etc/promtail/promtail.yaml
         volumeMounts:
-        - name: logs
-          mountPath: MOUNT_PATH
+        # - name: logs
+        #   mountPath: MOUNT_PATH
         - name: promtail-config
           mountPath: /etc/promtail
