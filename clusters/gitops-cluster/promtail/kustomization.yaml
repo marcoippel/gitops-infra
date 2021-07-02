@@ -4,7 +4,6 @@ namespace: monitoring
 resources:
   - clusterrole.yaml
   - daemonset.yaml
-  - promtail.yaml
   - rolebinding.yaml
   - serviceAccount.yaml
 configMapGenerator:
