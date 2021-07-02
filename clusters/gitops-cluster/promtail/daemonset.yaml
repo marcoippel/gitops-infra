@@ -16,7 +16,7 @@ spec:
       volumes:
       - name: logs
         hostPath:
-          path: /tmp/promtail
+          path: /var/logs/promtail
       - name: promtail-config
         configMap:
           name: promtail-config
