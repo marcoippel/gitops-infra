@@ -54,7 +54,7 @@ spec:
             capabilities:
               drop:
               - ALL
-            readOnlyRootFilesystem: true
+            # readOnlyRootFilesystem: true
           readinessProbe:
             failureThreshold: 5
             httpGet:
