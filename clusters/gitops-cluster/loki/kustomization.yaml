@@ -5,8 +5,11 @@ resources:
   - podsecuritypolicy.yaml
   - role.yaml
   - rolebinding.yaml
-  - secret.yaml
   - service-headless.yaml
   - service.yaml
   - serviceaccount.yaml
   - statefulset.yaml
+configMapGenerator:
+  - name: loki-config
+    files:
+      - loki.yaml

@@ -77,7 +77,7 @@ spec:
       terminationGracePeriodSeconds: 4800
       volumes:
         - name: config
-          secret:
-            secretName: loki-loki
+          configMap:
+            name: loki-config
         - name: storage
           emptyDir: {}
