@@ -1,32 +1,86 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: promtail-daemonset
+  name: promtail
+  labels:
+    app.kubernetes.io/name: promtail
 spec:
   selector:
     matchLabels:
-      name: promtail
+      app.kubernetes.io/name: promtail
+      app.kubernetes.io/instance: promtail
+  updateStrategy:
+    {}
   template:
     metadata:
       labels:
-        name: promtail
+        app.kubernetes.io/name: promtail
+        app.kubernetes.io/instance: promtail
+      annotations:
+        checksum/config: 3faaea7b5fdc1f359409c4372e7f1fabf3af75f34372dcae0b41fabe214e3c9a
     spec:
-      serviceAccount: promtail-serviceaccount
-      serviceAccountName: promtail-serviceaccount
-      volumes:
-      - name: logs
-        hostPath:
-          path: /var/logs/promtail
-      - name: promtail-config
-        configMap:
-          name: promtail-config
+      serviceAccountName: promtail
+      securityContext:
+        runAsGroup: 0
+        runAsUser: 0
       containers:
-      - name: promtail-container
-        image: grafana/promtail
-        args:
-        - -config.file=/etc/promtail/promtail.yaml
-        volumeMounts:
-        - name: logs
-          mountPath: /tmp/promtail
-        - name: promtail-config
-          mountPath: /etc/promtail
+        - name: promtail
+          image: "docker.io/grafana/promtail:2.2.1"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-config.file=/etc/promtail/promtail.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/promtail
+            - name: run
+              mountPath: /run/promtail
+            - mountPath: /var/lib/docker/containers
+              name: containers
+              readOnly: true
+            - mountPath: /var/log/pods
+              name: pods
+              readOnly: true
+          env:
+            - name: HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          ports:
+            - name: http-metrics
+              containerPort: 3101
+              protocol: TCP
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          readinessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+          operator: Exists
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
+      volumes:
+        - name: config
+          secret:
+            secretName: promtail
+        - name: run
+          hostPath:
+            path: /run/promtail
+        - hostPath:
+            path: /var/lib/docker/containers
+          name: containers
+        - hostPath:
+            path: /var/log/pods
+          name: pods

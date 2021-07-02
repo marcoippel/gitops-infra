@@ -1,9 +1,9 @@
 server:
-  log_level: debug
+  log_level: info
   http_listen_port: 3101
 
 client:
-  url: http://loki-loki/api/v1/push
+  url: http://loki-loki/loki/api/v1/push
 
 
 # positions:
