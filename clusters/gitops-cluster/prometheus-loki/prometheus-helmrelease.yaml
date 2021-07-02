@@ -12,3 +12,5 @@ spec:
         name: prometheus
       version: '14.3.0'
   interval: 10m0s
+  values:
+    lokiAddress: http://loki/loki/api/v1/push
