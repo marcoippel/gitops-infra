@@ -12,7 +12,8 @@ rules:
     - nodes/proxy
   verbs: ["get", "list", "watch"]
 - apiGroups:
-  - '*' 
+  - 'extensions'
+  - 'services'
   resources:
     - configmaps
     - ingresses
