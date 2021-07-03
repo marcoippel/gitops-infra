@@ -12,7 +12,7 @@ rules:
     - nodes/proxy
   verbs: ["get", "list", "watch"]
 - apiGroups:
-  - '*'
+  - '*' 
   resources:
     - configmaps
     - ingresses
