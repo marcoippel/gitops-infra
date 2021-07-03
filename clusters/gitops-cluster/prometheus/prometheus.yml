@@ -27,7 +27,7 @@ scrape_configs:
   tls_config:
     ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
     insecure_skip_verify: true
-  metrics_path: /metrics/cadvisor
+  metrics_path: /metrics/cadvisor 
 
 # Kubernetes pods
 - job_name: kubernetes-pods
