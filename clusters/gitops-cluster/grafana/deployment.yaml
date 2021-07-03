@@ -30,17 +30,15 @@ spec:
             - name: GF_AUTH_BASIC_ENABLED
               value: "true"
             - name: GF_SECURITY_ADMIN_USER
-              value: marco
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: {{ .Values.admin.existingSecret | default (include "grafana.fullname" .) }}
-              #     key: {{ .Values.admin.userKey | default "admin-user" }}
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-login
+                  key: username
             - name: GF_SECURITY_ADMIN_PASSWORD
-              value: welkom01!
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: {{ .Values.admin.existingSecret | default (include "grafana.fullname" .) }}
-              #     key: {{ .Values.admin.passwordKey | default "admin-password" }}
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-login
+                  key: password
           volumeMounts:
             - name: grafana
               mountPath: /var/lib/grafana
