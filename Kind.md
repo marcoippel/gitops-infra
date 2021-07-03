@@ -88,4 +88,8 @@ kubectl port-forward --namespace monitoring daemonSet/promtail-daemonset 3101:31
 
 kubectl port-forward --namespace default daemonSet/my-promtail 3101:3101
 
-kubectl port-forward --namespace kubernetes-dashboard deployment/kubernetes-dashboard 3000:8443
+# get the token to access the kubernetes dashboard
+kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+
+# start a proxy to access the kubernetes dashboard
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
