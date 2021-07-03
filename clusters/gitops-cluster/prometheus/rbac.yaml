@@ -3,12 +3,20 @@ kind: ClusterRole
 metadata:
   name: prometheus
 rules:
-- apiGroups: ["*"]
-  resources: ["*"]
-  verbs: ["*"]
-- apiGroups: ["*"]
-  resources: ["*"]
-  verbs: ["*"]
+- apiGroups: [""]
+  resources:
+    - nodes
+    - services
+    - endpoints
+    - pods
+    - nodes/proxy
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - extensions
+  resources:
+    - configmaps
+    - ingresses
+  verbs: ["get", "list", "watch"]
 - nonResourceURLs: ["/metrics", "/metrics/cadvisor"]
   verbs: ["get"]
 
