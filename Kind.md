@@ -51,41 +51,12 @@ kubectl apply -f sops-secret.yaml
 kubectl apply -f github-pat-secret.yaml
 ```
 
-http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-
-/api/v1/nodes/kind-control-plane/proxy/metrics/cadvisor
-/api/v1/nodes/kind-control-plane/proxy/metrics
-
- flux create source helm grafana \
-    --url=https://grafana.github.io/helm-charts \
-    --interval=10m \
-    --namespace=loki-stack \
-    --export > grafana-source.yaml
-
- flux create source helm prometheus \
-    --url=https://prometheus-community.github.io/helm-charts \
-    --interval=10m \
-    --namespace=loki-stack \
-    --export > prometheus-source.yaml
-
-flux create hr grafana \
-    --interval=10m \
-    --source=HelmRepository/grafana \
-    --chart=loki-stack \
-    --chart-version=">4.0.0" \
-    --values ./values.yaml \
-    --export > grafana-kustomization.yaml
-
 kubectl get secret --namespace loki-stack loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-
 kubectl port-forward --namespace loki-stack service/grafana 3000:80
 kubectl port-forward --namespace loki-stack service/prometheus-server 3001:80
 kubectl port-forward --namespace loki-stack service/prometheus-alertmanager 3002:80
-
 kubectl port-forward --namespace monitoring service/loki-loki 3100:3100
-
 kubectl port-forward --namespace monitoring daemonSet/promtail-daemonset 3101:3101
-
 kubectl port-forward --namespace default daemonSet/my-promtail 3101:3101
 
 # get the token to access the kubernetes dashboard
