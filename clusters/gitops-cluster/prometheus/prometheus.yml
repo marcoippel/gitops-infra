@@ -31,7 +31,7 @@ scrape_configs:
 
 - job_name: 'sample-app'
   kubernetes_sd_configs:
-  - role: nodeendpoints
+  - role: endpoints
   scheme: http
   target: ['http://sample-app']
   bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
