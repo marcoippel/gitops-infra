@@ -29,6 +29,16 @@ scrape_configs:
     insecure_skip_verify: true
   metrics_path: /metrics/cadvisor 
 
+- job_name: 'sample-app'
+  kubernetes_sd_configs:
+  - role: nodeendpoints
+  scheme: http
+  target: ['http://sample-app']
+  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+  tls_config:
+    ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    insecure_skip_verify: true
+
 # Kubernetes pods
 - job_name: kubernetes-pods
   kubernetes_sd_configs:

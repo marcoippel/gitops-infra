@@ -58,6 +58,8 @@ kubectl port-forward --namespace loki-stack service/prometheus-alertmanager 3002
 kubectl port-forward --namespace monitoring service/loki-loki 3100:3100
 kubectl port-forward --namespace monitoring daemonSet/promtail-daemonset 3101:3101
 kubectl port-forward --namespace default daemonSet/my-promtail 3101:3101
+kubectl port-forward --namespace default service/sample-app 81:80
+
 
 # get the token to access the kubernetes dashboard
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"

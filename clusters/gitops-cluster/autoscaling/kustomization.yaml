@@ -5,4 +5,3 @@ resources:
 - sampleapp-service.yaml
 - sampleapp.yaml
 - sample-app-hpa.yaml
-- service-monitor.yaml
