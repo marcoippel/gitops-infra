@@ -4,3 +4,4 @@ namespace: monitoring
 resources:
 - sampleapp-service.yaml
 - sampleapp.yaml
+- sample-app-hpa.yaml
