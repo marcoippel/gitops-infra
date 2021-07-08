@@ -32,8 +32,8 @@ scrape_configs:
 
 - job_name: sample-app
   scrape_interval: 5s
-  kubernetes_sd_configs:
-  - role: node
+  # kubernetes_sd_configs:
+  # - role: node
   static_configs:
     - targets: ['sample-app:80']
   scheme: http
