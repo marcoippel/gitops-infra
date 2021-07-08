@@ -37,6 +37,17 @@ scrape_configs:
   static_configs:
     - targets: ['sample-app:80']
   scheme: http
+  relabel_configs:
+  - action: labelmap
+    regex: __meta_kubernetes_pod_label_(.+)
+  - action: replace
+    source_labels:
+    - __meta_kubernetes_namespace
+    target_label: kubernetes_namespace
+  - action: replace
+    source_labels:
+    - __meta_kubernetes_pod_name
+    target_label: kubernetes_pod_name
 
 # Kubernetes pods
 - job_name: kubernetes-pods
