@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m0s
-  path: ./deploy/static/provider/cloud #kind #cloud
+  path: ./deploy/static/provider/kind #kind #cloud
   prune: true
   sourceRef:
     kind: GitRepository
