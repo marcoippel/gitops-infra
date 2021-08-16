@@ -51,6 +51,12 @@ kubectl apply -f sops-secret.yaml
 kubectl apply -f github-pat-secret.yaml
 ```
 
+$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+$ helm repo update
+$ helm install --name my-release prometheus-community/prometheus-adapter
+
+
+
 kubectl get secret --namespace loki-stack loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 kubectl port-forward --namespace loki-stack service/grafana 3000:80
 kubectl port-forward --namespace loki-stack service/prometheus-server 3001:80
