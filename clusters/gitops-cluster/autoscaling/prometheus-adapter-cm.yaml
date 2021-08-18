@@ -15,6 +15,5 @@ kind: ConfigMap
 metadata:
   labels:
     app: prometheus-adapter
-    app.kubernetes.io/managed-by: Helm
   name: prometheus-adapter
   namespace: monitoring

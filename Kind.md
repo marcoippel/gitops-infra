@@ -55,6 +55,8 @@ $ helm repo add prometheus-community https://prometheus-community.github.io/helm
 $ helm repo update
 $ helm install --name my-release prometheus-community/prometheus-adapter
 
+# query for custom resources
+k get --raw /apis/custom.metrics.k8s.io/v1beta1/namespaces/monitoring/pods/*/http_requests_per_second | jq
 
 
 kubectl get secret --namespace loki-stack loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
