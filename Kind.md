@@ -54,7 +54,7 @@ kubectl apply -f github-pat-secret.yaml
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 helm install --name my-release prometheus-community/prometheus-adapter
-helm install prometheusadapter prometheus-community/prometheus-adapter -set prometheus.url=http://prometheus.monitoring.svc -n monitoring
+helm install prometheusadapter prometheus-community/prometheus-adapter --set prometheus.url=http://prometheus.monitoring.svc  --set rules.existing=prometheus-adapter -n monitoring
 
 # query for custom resources
 k get --raw /apis/custom.metrics.k8s.io/v1beta1/namespaces/monitoring/pods/*/http_requests_per_second | jq
