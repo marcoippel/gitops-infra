@@ -51,10 +51,9 @@ kubectl apply -f sops-secret.yaml
 kubectl apply -f github-pat-secret.yaml
 ```
 
-$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-$ helm repo update
-$ helm install --name my-release prometheus-community/prometheus-adapter
-
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheusadapter prometheus-community/prometheus-adapter -set prometheus.url=http://prometheus.monitoring.svc -n monitoring
 
 
 kubectl get secret --namespace loki-stack loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
