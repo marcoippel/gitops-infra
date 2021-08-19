@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-adapter
+  namespace: prometheus-adapter
+spec:
+  releaseName: prometheus-adapter
+  chart:
+    spec:
+      chart: prometheus-adapter
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  interval: 5m
+  values:
+    prometheus.url: http://prometheus.monitoring.svc
+    rules:
+      existing: prometheus-adapter
