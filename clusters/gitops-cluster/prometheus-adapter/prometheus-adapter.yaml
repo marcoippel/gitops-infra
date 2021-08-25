@@ -14,6 +14,7 @@ spec:
         namespace: flux-system
   interval: 5m
   values:
-    prometheus.url: http://prometheus.monitoring.svc
+    prometheus:
+      url: http://prometheus.monitoring.svc
     rules:
       existing: prometheus-adapter
